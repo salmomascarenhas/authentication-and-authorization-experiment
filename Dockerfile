@@ -1,7 +1,15 @@
 FROM node:16.17.0
 
-USER node
-
 WORKDIR /app
 
-CMD [ "/app/start.sh" ]
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+USER node
+
+EXPOSE 3000
+
+CMD ["/app/start.sh"]

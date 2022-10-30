@@ -9,7 +9,7 @@ import { routes } from './routes'
 const app = express()
 
 createConnection(process.env.POSTGRES_HOST)
-    .then(() => console.log('Database conection created with succesfull'))
+    .then(() => console.log('Database connection created successfully'))
     .catch((error) => console.log(error))
 
 // app.use(express.json())

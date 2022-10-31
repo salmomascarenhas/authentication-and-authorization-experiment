@@ -59,5 +59,15 @@ usersRouters.delete(
     usersController.destroy
 )
 
-export { usersRouters }
+usersRouters.post(
+    '/login',
+    celebrate({
+        [Segments.BODY]: Joi.object().keys({
+            email: Joi.string().email().required(),
+            password: Joi.string().required(),
+        }),
+    }),
+    usersController.login
+)
 
+export { usersRouters }

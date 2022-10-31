@@ -86,6 +86,21 @@ class UsersControllers {
         return response.status(StatusCodes.ACCEPTED).send()
     }
 
+    public async login(request: Request, response: Response) {
+        const { email, password } = request.body
+
+        const usersRepository = dataSource.getRepository(Users)
+        const user = usersRepository.findOneBy(email)
+
+        if (!user)
+            return response
+                .status(StatusCodes.NOT_FOUND)
+                .json({ status: 'NOT FOUND', message: 'Email or Password Error!' })
+
+        return response
+            .status(StatusCodes.OK).send()
+    }
+
 
 }
 
